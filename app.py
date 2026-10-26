@@ -3,6 +3,14 @@ from flask import Flask, request, jsonify
 import requests
 
 app = Flask(__name__)
+@app.get("/")
+def home():
+    from flask import send_from_directory
+    import os
+    return send_from_directory(
+        os.path.dirname(os.path.abspath(__file__)),
+        "index.html"
+    )
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "").strip()
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-6-astra").strip()
