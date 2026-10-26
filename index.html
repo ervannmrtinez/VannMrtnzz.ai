@@ -1,105 +1,140 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#09090f">
-  <title>VannMrtnz.AI</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; background: #09090f; color: #f5f5f5;
-      font-family: Arial, sans-serif; min-height: 100vh;
-      display: flex; flex-direction: column;
-    }
-    header {
-      padding: 18px; border-bottom: 1px solid #292936;
-      color: #a78bfa; font-size: 21px; font-weight: bold;
-    }
-    #chat {
-      flex: 1; padding: 18px; overflow-y: auto;
-      display: flex; flex-direction: column; gap: 12px;
-    }
-    .msg {
-      padding: 12px 15px; border-radius: 14px;
-      max-width: 88%; white-space: pre-wrap; line-height: 1.5;
-    }
-    .bot { background: #1b1b29; align-self: flex-start; }
-    .user { background: #6d4aff; align-self: flex-end; }
-    form {
-      display: flex; gap: 8px; padding: 12px;
-      border-top: 1px solid #292936;
-    }
-    input {
-      flex: 1; min-width: 0; padding: 14px;
-      border: 1px solid #343447; border-radius: 12px;
-      background: #151520; color: white; font-size: 16px;
-    }
-    button {
-      border: 0; border-radius: 12px; padding: 0 18px;
-      background: #8b5cf6; color: white; font-weight: bold;
-    }
-    button:disabled { opacity: .5; }
-  </style>
-</head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080912">
+<meta name="description" content="VannMrtnz.AI — Premium AI Tools Workspace">
+<title>VannMrtnz.AI — Premium AI Tools</title>
+<style>
+:root{color-scheme:dark;--bg:#070811;--panel:#101321;--panel2:#15182a;--line:#ffffff15;--text:#f7f6ff;--muted:#a2a6c1;--purple:#8957ff;--cyan:#65e6ff;--pink:#ec65dc}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#5720b52b,transparent 36%),radial-gradient(ellipse at 85% 8%,#087fa01b,transparent 32%),var(--bg);color:var(--text);font:14px Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.app{min-height:100vh;display:grid;grid-template-columns:238px minmax(0,1fr)}.sidebar{position:sticky;top:0;height:100vh;padding:17px 13px;border-right:1px solid var(--line);background:#080a13e8;backdrop-filter:blur(20px);display:flex;flex-direction:column;gap:20px;z-index:10}.brand{display:flex;align-items:center;gap:10px;padding:3px 7px;font-weight:850;letter-spacing:-.4px}.logo{width:39px;height:39px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,#c4b5fd,#7c3aed 55%,#0891b2);font-weight:950;font-size:18px;box-shadow:0 5px 25px #7c3aed45}.brand small{display:block;color:#858aa8;font-size:9px;letter-spacing:1.2px;margin-top:3px;font-weight:650}.label{font-size:9px;letter-spacing:1.8px;color:#777d9b;font-weight:850;padding:0 9px;margin-bottom:-12px}.nav{display:grid;gap:5px}.nav button,.side-action{width:100%;display:flex;align-items:center;gap:10px;padding:10px 11px;border:1px solid transparent;border-radius:11px;background:transparent;color:#bfc2d8;text-align:left;font-size:12px;transition:.18s}.nav button:hover,.nav button.active,.side-action:hover{background:linear-gradient(110deg,#8b5cf62c,#8b5cf609);border-color:#8b5cf64f;color:white}.nav-icon{display:inline-grid;place-items:center;width:20px;font-size:15px}.profile-card{margin-top:auto;border:1px solid var(--line);border-radius:14px;padding:10px;background:linear-gradient(145deg,#1b1a35,#0d101b);position:relative;overflow:hidden}.profile-card:before{content:"";position:absolute;width:100px;height:100px;border-radius:50%;right:-30px;top:-30px;background:#8b5cf633;filter:blur(10px)}.profile-title{font-size:11px;font-weight:800;letter-spacing:1px}.profile-sub{font-size:9px;color:var(--muted);margin-top:4px}.status{font-size:10px;color:#aeb2ca;line-height:1.5;padding:0 5px}.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#5eead4;margin-right:6px;box-shadow:0 0 8px #5eead4}
+main{padding:17px clamp(13px,2vw,28px) 28px;min-width:0}.topbar{display:flex;align-items:center;gap:12px;margin-bottom:18px}.search{flex:1;display:flex;align-items:center;gap:9px;border:1px solid var(--line);background:#ffffff06;border-radius:12px;padding:0 12px;min-width:0}.search input{border:0;background:transparent;outline:none;color:white;width:100%;padding:11px 0;font-size:12px}.icon-btn{width:36px;height:36px;border:1px solid var(--line);background:#ffffff07;border-radius:11px;color:#d8d8ec}.user-chip{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:#ffffff06;border-radius:12px;padding:6px 9px;font-size:11px;font-weight:700}.avatar{width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#a78bfa,#2563eb);font-size:11px}.mobile-brand,.menu-btn{display:none}.pill{font-size:9px;letter-spacing:1px;border:1px solid #8b5cf655;background:#8b5cf615;color:#d0bfff;border-radius:999px;padding:7px 10px;white-space:nowrap}
+.page{display:none;max-width:1450px;margin:0 auto}.page.active{display:block}.hero{min-height:218px;border:1px solid #a78bfa25;border-radius:20px;overflow:hidden;position:relative;padding:clamp(22px,3vw,36px);display:flex;align-items:center;background:radial-gradient(ellipse at 75% 45%,#8b5cf642,transparent 32%),radial-gradient(ellipse at 85% 100%,#0ea5e933,transparent 38%),linear-gradient(105deg,#17132a,#101321 65%,#101928);box-shadow:0 20px 65px #0004}.hero-copy{position:relative;z-index:2;max-width:610px}.kicker{font-size:9px;letter-spacing:2px;color:#c4b5fd;font-weight:850;text-transform:uppercase}.hero h1{font-size:clamp(32px,4vw,49px);line-height:1.04;letter-spacing:-1.7px;margin:12px 0}.gradient{background:linear-gradient(90deg,#fff,#c4b5fd 55%,#67e8f9);background-clip:text;color:transparent}.hero p{color:#b5b8cf;line-height:1.7;font-size:12px;max-width:530px;margin:0}.hero-actions{display:flex;gap:9px;margin-top:18px;flex-wrap:wrap}.btn{border:0;border-radius:11px;padding:11px 15px;background:linear-gradient(135deg,#925cff,#6848f6);color:white;font-weight:750;font-size:11px;box-shadow:0 8px 25px #7c3aed35;white-space:nowrap}.btn.secondary{background:#ffffff07;border:1px solid var(--line);box-shadow:none;color:#dedff0}.btn:disabled{opacity:.5;cursor:wait}.hero-art{position:absolute;right:3%;top:0;bottom:0;width:36%;display:flex;align-items:center;justify-content:center;pointer-events:none}.orb{width:min(220px,85%);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,#f0abfc 0,#8b5cf6 20%,#43218a 45%,#111322 70%);box-shadow:0 0 55px #8b5cf655, inset -20px -20px 45px #050611;position:relative}.orb:before,.orb:after{content:"";position:absolute;inset:-14px;border:1px solid #bba1ff66;border-radius:45%;transform:rotate(28deg)}.orb:after{inset:-27px;transform:rotate(-38deg);border-color:#67e8f944}.art-label{position:absolute;right:0;top:28px;border:1px solid var(--line);border-radius:11px;background:#0b0d18cc;padding:10px;font-size:10px;color:#c9c2f7;line-height:1.6;backdrop-filter:blur(12px)}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:21px 0 12px}.section-title h2{font-size:15px;margin:0;letter-spacing:-.3px}.section-title p{font-size:10px;color:var(--muted);margin:5px 0 0}.tool-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.tool-card{border:1px solid var(--line);border-radius:14px;padding:13px;background:linear-gradient(145deg,#151827dd,#0d1019dd);text-align:left;color:white;min-width:0;transition:.18s}.tool-card:hover{transform:translateY(-2px);border-color:#8b5cf666}.tool-ico{width:29px;height:29px;border-radius:9px;display:grid;place-items:center;background:#8b5cf626;color:#c4b5fd;margin-bottom:10px;font-size:15px}.tool-card h3{font-size:11px;margin:0 0 6px}.tool-card p{font-size:9px;color:#a4a8c0;line-height:1.5;margin:0}.workspace{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(220px,.8fr);gap:12px;margin-top:14px}.glass{border:1px solid var(--line);background:linear-gradient(145deg,#111423ed,#0b0e18ed);border-radius:16px;overflow:hidden;box-shadow:0 12px 40px #0002}.chat-head{padding:13px 15px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:8px}.chat-head strong{font-size:13px}.chat-head small{display:block;font-size:10px;color:var(--muted);margin-top:4px}.chat-log{padding:14px;display:flex;flex-direction:column;gap:11px;min-height:180px;max-height:300px;overflow-y:auto}.bubble{max-width:92%;padding:11px 13px;border-radius:13px;font-size:11px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere}.bubble.bot{align-self:flex-start;background:#ffffff09;border:1px solid #ffffff0d}.bubble.user{align-self:flex-end;background:linear-gradient(135deg,#7c3aed,#635bfa)}.compose{display:flex;gap:7px;padding:10px;border-top:1px solid var(--line)}.field{width:100%;min-width:0;background:#0b0d17;border:1px solid #ffffff1d;border-radius:11px;color:white;padding:11px 12px;font-size:11px}.compose textarea{resize:vertical;min-height:40px;max-height:110px}.history-head{display:flex;justify-content:space-between;align-items:center;padding:13px 14px;border-bottom:1px solid var(--line)}.history-head strong{font-size:12px}.history-list{padding:8px;display:grid;gap:4px;max-height:350px;overflow:auto}.history-item{display:flex;align-items:center;gap:9px;padding:9px;border-radius:10px}.history-item:hover{background:#ffffff08}.history-icon{width:27px;height:27px;border-radius:9px;display:grid;place-items:center;background:#ffffff0b;flex:none}.history-info{min-width:0;flex:1}.history-info strong{display:block;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.history-info small{display:block;font-size:9px;color:var(--muted);margin-top:4px}.mini{border:1px solid var(--line);background:#ffffff08;color:#d7d9ed;border-radius:8px;padding:5px 7px;font-size:9px}.page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin:8px 0 15px}.page-head h2{font-size:25px;margin:0}.page-head p{font-size:11px;color:var(--muted);margin:6px 0 0}.formcard{padding:clamp(14px,3vw,22px);display:grid;gap:14px}.fieldrow{display:grid;gap:7px}.fieldrow label{font-size:11px;color:#c9cbe0;font-weight:750}.actions{display:flex;gap:8px;flex-wrap:wrap}.output{border:1px solid #8b5cf63b;border-radius:12px;background:#8b5cf60a;padding:14px;min-height:76px;font-size:11px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;color:#e7e5ff}.output.empty{color:#777d99}.empty-state{padding:36px 14px;text-align:center;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:11px}.foot{color:#717894;font-size:9px;text-align:center;line-height:1.6;margin:20px auto 0}.toast{position:fixed;bottom:18px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#202337;border:1px solid var(--line);padding:10px 14px;border-radius:11px;font-size:11px;z-index:30;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:1050px){.tool-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero-art{width:30%;opacity:.8}.workspace{grid-template-columns:minmax(0,1.4fr) minmax(210px,.8fr)}}
+@media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{position:fixed;inset:0 auto 0 0;width:min(275px,86vw);height:100dvh;transform:translateX(-105%);transition:transform .22s;box-shadow:20px 0 70px #0009}.sidebar.open{transform:translateX(0)}main{padding:12px 11px 24px}.topbar{margin-bottom:13px}.menu-btn,.mobile-brand{display:flex}.menu-btn{width:34px;height:34px;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:10px;background:#ffffff08;color:white}.mobile-brand{align-items:center;gap:7px;font-weight:800;font-size:12px}.mobile-brand .logo{width:29px;height:29px;border-radius:9px;font-size:13px}.search{display:none}.user-chip{padding:5px}.user-chip .name{display:none}.hero{min-height:220px;padding:21px 17px}.hero h1{font-size:34px}.hero p{font-size:11px;max-width:85%}.hero-art{width:40%;right:-8%;opacity:.5}.orb{width:150px}.art-label{display:none}.hero-copy{max-width:100%}.tool-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.tool-card{padding:12px}.tool-card h3{font-size:11px}.workspace{grid-template-columns:1fr}.chat-log{min-height:170px;max-height:36vh}.history-list{max-height:260px}.pill{font-size:8px;padding:6px 8px}.page-head h2{font-size:22px}}
+</style></head>
 <body>
-  <header>✦ VannMrtnz.AI</header>
-  <main id="chat">
-    <div class="msg bot">Halo! Gue VannMrtnz.AI. Ada yang bisa gue bantu?</div>
-  </main>
-  <form id="form">
-    <input id="prompt" placeholder="Tulis pesan lu..." autocomplete="off" required>
-    <button id="send" type="submit">Kirim</button>
-  </form>
-  <script>
-    const API_URL = "https://vannmrtnzzai.vercel.app/chat";
-    const chat = document.getElementById("chat");
-    const form = document.getElementById("form");
-    const input = document.getElementById("prompt");
-    const send = document.getElementById("send");
-    const messages = [];
-
-    function addMessage(text, role) {
-      const el = document.createElement("div");
-      el.className = "msg " + (role === "user" ? "user" : "bot");
-      el.textContent = text;
-      chat.appendChild(el);
-      chat.scrollTop = chat.scrollHeight;
-    }
-
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      const text = input.value.trim();
-      if (!text) return;
-
-      addMessage(text, "user");
-      messages.push({ role: "user", content: text });
-      input.value = "";
-      send.disabled = true;
-      send.textContent = "...";
-
-      try {
-        const response = await fetch(API_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ messages })
-        });
-        const data = await response.json();
-        if (!response.ok) throw new Error(data.error || "Permintaan gagal.");
-        if (typeof data.reply !== "string") {
-          throw new Error("Format jawaban server tidak sesuai.");
-        }
-        addMessage(data.reply, "assistant");
-        messages.push({ role: "assistant", content: data.reply });
-      } catch (error) {
-        addMessage("Gagal: " + error.message, "assistant");
-      } finally {
-        send.disabled = false;
-        send.textContent = "Kirim";
-        input.focus();
-      }
-    });
-  </script>
-</body>
-</html>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><div class="logo">♛</div><div>VannMrtnz.AI<small>ALL AI TOOLS IN ONE</small></div></div>
+  <div class="label">WORKSPACE</div>
+  <nav class="nav">
+    <button class="active" data-page="home"><span class="nav-icon">⌂</span> Beranda</button>
+    <button data-page="chat"><span class="nav-icon">☏</span> AI Chat</button>
+    <button data-page="image"><span class="nav-icon">▧</span> Prompt Gambar</button>
+    <button data-page="video"><span class="nav-icon">▷</span> Prompt Video</button>
+    <button data-page="tools"><span class="nav-icon">✿</span> Generator Tools</button>
+    <button data-page="templates"><span class="nav-icon">▤</span> Template Prompt</button>
+    <button data-page="history"><span class="nav-icon">◴</span> Riwayat</button>
+    <button data-page="settings"><span class="nav-icon">⚙</span> Pengaturan</button>
+  </nav>
+  <div class="profile-card"><div class="profile-title">VANNMRTNZZ</div><div class="profile-sub">PREMIUM AI EXPERIENCE</div></div>
+  <div class="status"><span class="dot"></span>Workspace siap<br>API key tersimpan di server, bukan di frontend.</div>
+</aside>
+<main>
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" aria-label="Buka menu">☰</button>
+  <div class="mobile-brand"><div class="logo">♛</div>VannMrtnz.AI</div>
+  <div class="search"><span>⌕</span><input id="globalSearch" placeholder="Cari fitur, prompt, atau tools..."></div>
+  <button class="icon-btn" id="themeInfo" aria-label="Info tema">☾</button><button class="icon-btn" id="notice" aria-label="Notifikasi">♧</button>
+  <div class="user-chip"><span class="avatar">V</span><span class="name">VannMrtnzz</span>⌄</div>
+</header>
+<section class="page active" id="page-home">
+  <div class="hero"><div class="hero-copy"><div class="kicker">✦ Welcome to your creative space</div><h1><span class="gradient">VannMrtnz.AI</span></h1><p>All AI Tools in One Platform. Chat AI, prompt generator, image & video tools, template, dan banyak lagi dalam satu workspace premium.</p><div class="hero-actions"><button class="btn" data-open="chat">Mulai Chat AI →</button><button class="btn secondary" data-open="tools">Jelajahi Tools</button></div></div><div class="hero-art"><div class="orb"></div><div class="art-label">Create<br>Generate<br>Imagine<br>Beyond Limits</div></div></div>
+  <div class="section-title"><div><h2>Quick Access</h2><p>Pilih tools yang kamu butuhkan</p></div><span class="pill">8+ TOOLS</span></div>
+  <div class="tool-grid">
+    <button class="tool-card" data-open="chat"><div class="tool-ico">☏</div><h3>AI Chat</h3><p>Chat dengan AI berbagai model</p></button>
+    <button class="tool-card" data-open="image"><div class="tool-ico">▧</div><h3>Prompt Gambar</h3><p>Generator prompt gambar realistis</p></button>
+    <button class="tool-card" data-open="video"><div class="tool-ico" style="background:#ec65dc22;color:#f0a5e9">▷</div><h3>Prompt Video</h3><p>Generator prompt video sinematik</p></button>
+    <button class="tool-card" data-open="templates"><div class="tool-ico">▤</div><h3>Template Prompt</h3><p>Template siap pakai</p></button>
+    <button class="tool-card" data-open="tools"><div class="tool-ico" style="background:#0ea5e922;color:#67e8f9">✿</div><h3>Generator Tools</h3><p>Tools kreatif lainnya</p></button>
+  </div>
+  <div class="workspace">
+    <div class="glass">
+      <div class="chat-head"><div><strong>✧ &nbsp; AI Chat</strong><small>Tanyakan apa saja pada VannMrtnz.AI</small></div><span class="pill">ASSISTANT</span></div>
+      <div class="chat-log" id="homeLog"><div class="bubble bot">Halo! Gue VannMrtnz.AI. Ada yang bisa gue bantu hari ini?</div></div>
+      <form class="compose" id="homeForm"><textarea class="field" id="homeInput" rows="1" placeholder="Tulis pesan lu di sini..." required></textarea><button class="btn" id="homeSend">➤</button></form>
+    </div>
+    <div class="glass"><div class="history-head"><strong>Riwayat Percakapan</strong><button class="btn" style="padding:7px 10px" data-open="history">＋</button></div><div class="history-list" id="homeHistory"></div></div>
+  </div>
+  <div class="foot">VannMrtnz.AI · Premium AI Workspace · History tersimpan di browser perangkat ini.</div>
+</section>
+<section class="page" id="page-chat">
+  <div class="page-head"><div><h2>AI Chat</h2><p>Ngobrol, brainstorming, dan susun ide bersama AI.</p></div><button class="btn secondary" id="newChat">＋ Chat Baru</button></div>
+  <div class="glass"><div class="chat-head"><div><strong>✧ VannMrtnz Assistant</strong><small id="chatStatus">Siap membantu lu</small></div><span class="pill">AI WORKSPACE</span></div><div class="chat-log" id="chatLog" style="min-height:45vh;max-height:58vh"><div class="bubble bot">Halo! Gue VannMrtnz.AI. Mau bikin apa hari ini?</div></div><form class="compose" id="chatForm"><textarea class="field" id="chatInput" rows="1" placeholder="Tulis pesan lu..." required></textarea><button class="btn" id="sendBtn">Kirim ↑</button></form></div>
+  <p class="foot">AI Chat memerlukan backend `/chat`, model API yang valid, dan kredit API tersedia.</p>
+</section>
+<section class="page" id="page-image"><div class="page-head"><div><h2>Prompt Gambar</h2><p>Buat prompt gambar detail yang siap dipakai.</p></div></div><div class="glass formcard">
+  <div class="fieldrow"><label for="isub">Subjek dan adegan</label><textarea class="field" id="isub" rows="3" placeholder="Contoh: pria muda di jalan kota saat hujan malam"></textarea></div>
+  <div class="fieldrow"><label for="istyle">Gaya visual</label><input class="field" id="istyle" placeholder="Photorealistic, candid smartphone photography"></div>
+  <div class="fieldrow"><label for="iratio">Rasio gambar</label><select class="field" id="iratio"><option>9:16 vertical portrait</option><option>4:5 portrait</option><option>1:1 square</option><option>16:9 landscape</option><option>3:4 portrait</option></select></div>
+  <div class="fieldrow"><label for="idetail">Detail tambahan</label><textarea class="field" id="idetail" rows="2" placeholder="Lighting, kamera, pakaian, komposisi..."></textarea></div>
+  <div class="actions"><button class="btn" id="igen">✦ Generate dengan AI</button><button class="btn secondary" id="ilocal">Susun Template Lokal</button></div>
+  <div class="fieldrow"><label>Hasil prompt</label><div class="output empty" id="iout">Hasil prompt akan muncul di sini.</div><div class="actions"><button class="btn secondary" data-copy="iout">Salin Prompt</button><button class="btn secondary" data-save="iout">Simpan Riwayat</button></div></div>
+</div></section>
+<section class="page" id="page-video"><div class="page-head"><div><h2>Prompt Video</h2><p>Rancang adegan, gerakan kamera, dan durasi.</p></div></div><div class="glass formcard">
+  <div class="fieldrow"><label for="vscene">Adegan / konsep</label><textarea class="field" id="vscene" rows="3" placeholder="Contoh: pasangan berjalan di taman saat golden hour"></textarea></div>
+  <div class="fieldrow"><label for="vmotion">Gerakan kamera</label><select class="field" id="vmotion"><option>Slow cinematic tracking shot</option><option>Handheld natural movement</option><option>Slow dolly-in close-up</option><option>Wide shot with gentle pan</option><option>Static camera, subject movement</option></select></div>
+  <div class="fieldrow"><label for="vduration">Durasi</label><select class="field" id="vduration"><option>10 seconds</option><option>15 seconds</option><option>20 seconds</option><option>30 seconds</option><option>60 seconds</option></select></div>
+  <div class="fieldrow"><label for="vdetail">Detail tambahan</label><textarea class="field" id="vdetail" rows="2" placeholder="Ekspresi, transisi, lighting, konsistensi karakter..."></textarea></div>
+  <div class="actions"><button class="btn" id="vgen">✦ Generate dengan AI</button><button class="btn secondary" id="vlocal">Susun Template Lokal</button></div>
+  <div class="fieldrow"><label>Hasil prompt</label><div class="output empty" id="vout">Hasil prompt akan muncul di sini.</div><div class="actions"><button class="btn secondary" data-copy="vout">Salin Prompt</button><button class="btn secondary" data-save="vout">Simpan Riwayat</button></div></div>
+</div></section>
+<section class="page" id="page-tools"><div class="page-head"><div><h2>Semua Tools AI</h2><p>Pilih tools untuk mulai bekerja.</p></div></div><div class="tool-grid" style="grid-template-columns:repeat(auto-fit,minmax(145px,1fr))">
+<button class="tool-card" data-open="chat"><div class="tool-ico">☏</div><h3>AI Chat</h3><p>Asisten percakapan AI</p></button>
+<button class="tool-card" data-open="image"><div class="tool-ico">▧</div><h3>Prompt Gambar</h3><p>Prompt untuk generator gambar</p></button>
+<button class="tool-card" data-open="video"><div class="tool-ico">▷</div><h3>Prompt Video</h3><p>Prompt video sinematik</p></button>
+<button class="tool-card" data-open="templates"><div class="tool-ico">▤</div><h3>Template Prompt</h3><p>Kumpulan template prompt</p></button>
+<button class="tool-card" data-open="image"><div class="tool-ico">⌕</div><h3>Image to Prompt</h3><p>Isi detail visual untuk merancang prompt</p></button>
+<button class="tool-card" data-open="video"><div class="tool-ico">◉</div><h3>Video Concept</h3><p>Rancang konsep dan kamera</p></button>
+</div><p class="foot">Tools tambahan akan membutuhkan integrasi API khusus jika ingin melakukan pemrosesan eksternal.</p></section>
+<section class="page" id="page-templates"><div class="page-head"><div><h2>Template Prompt</h2><p>Pilih template, lalu salin atau lanjutkan ke generator.</p></div></div><div class="tool-grid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+<button class="tool-card" data-template="Foto realistis bergaya smartphone, pencahayaan natural, tekstur kulit dan kain yang wajar, komposisi candid, detail lingkungan konsisten, tanpa efek CGI."><div class="tool-ico">▧</div><h3>Foto Realistis</h3><p>Fotografi natural bergaya smartphone.</p></button>
+<button class="tool-card" data-template="Cinematic video shot, smooth natural movement, coherent subject identity, consistent wardrobe and environment, realistic lighting, smooth temporal continuity, no flicker or warping."><div class="tool-ico">▷</div><h3>Video Sinematik</h3><p>Gerakan kamera dan kontinuitas.</p></button>
+<button class="tool-card" data-template="Buat konsep visual dengan subjek utama yang jelas, komposisi terarah, pencahayaan realistis, palet warna harmonis, detail latar relevan, dan hasil akhir yang siap dipakai."><div class="tool-ico">✧</div><h3>Konsep Visual</h3><p>Ide visual siap dikembangkan.</p></button>
+</div><div class="foot">Tekan kartu template untuk memuatnya ke Prompt Gambar.</div></section>
+<section class="page" id="page-history"><div class="page-head"><div><h2>Riwayat</h2><p>Chat dan prompt tersimpan lokal pada browser perangkat ini.</p></div><button class="btn secondary" id="clearHistory">Hapus Semua</button></div><div class="glass"><div class="history-list" id="historyList"></div></div></section>
+<section class="page" id="page-settings"><div class="page-head"><div><h2>Pengaturan</h2><p>Informasi workspace dan privasi.</p></div></div><div class="glass formcard"><div><strong>VannMrtnz.AI</strong><p style="color:var(--muted);font-size:11px;line-height:1.7">Premium Dark Glassmorphism · Mobile responsive</p></div><div class="fieldrow"><label>Status koneksi backend</label><div class="actions"><button class="btn" id="testHealth">Tes Backend</button><span class="muted" id="healthResult">Belum dites</span></div></div><div class="fieldrow"><label>Privasi</label><p class="muted">API key tidak disimpan di HTML. Riwayat percakapan disimpan pada localStorage browser dan tidak tersinkron antarperangkat. Hindari memakai perangkat umum untuk percakapan pribadi.</p></div></div></section>
+<div class="foot">VannMrtnz.AI · Premium AI Workspace · API key hanya di server.</div>
+</main></div><div class="toast" id="toast" role="status"></div>
+<script>
+(()=>{"use strict";
+const API="/chat", $=id=>document.getElementById(id), HK="vannmrtnz_history_v2", CK="vannmrtnz_chats_v2";
+let history=read(HK),chats=read(CK),messages=[],busy=false;
+function read(k){try{let v=JSON.parse(localStorage.getItem(k));return Array.isArray(v)?v:[]}catch(e){return[]}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){notify("Penyimpanan browser penuh.")}}
+function notify(s){$("toast").textContent=s;$("toast").classList.add("show");clearTimeout(notify.t);notify.t=setTimeout(()=>$("toast").classList.remove("show"),2300)}
+function go(p){document.querySelectorAll(".page").forEach(x=>x.classList.toggle("active",x.id==="page-"+p));document.querySelectorAll("[data-page]").forEach(x=>x.classList.toggle("active",x.dataset.page===p));$("sidebar").classList.remove("open");if(p==="history")renderHistory()}
+document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>go(b.dataset.page));document.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>go(b.dataset.open));$("menuBtn").onclick=()=>$("sidebar").classList.toggle("open");
+function addBubble(target,text,role,copy=false){let d=document.createElement("div");d.className="bubble "+(role==="user"?"user":"bot");let t=document.createElement("div");t.textContent=text;d.append(t);if(copy){let b=document.createElement("button");b.className="mini";b.textContent="Salin jawaban";b.onclick=()=>copyText(text);d.append(b)}$(target).append(d);$(target).scrollTop=$(target).scrollHeight}
+function addHistory(type,title,content,extra={}){history.unshift({id:Date.now()+Math.random(),type,title:title.slice(0,80),content,date:new Date().toISOString(),...extra});history=history.slice(0,100);save(HK,history);renderHomeHistory()}
+function saveChat(){if(!messages.length)return;const first=messages.find(m=>m.role==="user");let item={id:Date.now(),title:(first?.content||"Percakapan baru").slice(0,70),date:new Date().toISOString(),messages:messages.slice()};chats.unshift(item);chats=chats.slice(0,40);save(CK,chats);addHistory("Chat",item.title,messages.map(m=>(m.role==="user"?"Lu: ":"AI: ")+m.content).join("\n\n"),{messages:item.messages})}
+function resetChat(){messages=[];$("chatLog").replaceChildren();addBubble("chatLog","Halo! Gue VannMrtnz.AI. Mau bikin apa hari ini?","assistant");$("chatStatus").textContent="Chat baru siap"}
+$("newChat").onclick=()=>{saveChat();resetChat();notify("Chat baru dibuat")};
+async function sendMessage(text,target,statusId,buttonId){if(busy||!text.trim())return;messages.push({role:"user",content:text.trim()});addBubble(target,text.trim(),"user");busy=true;if(buttonId){$(buttonId).disabled=true;$(buttonId).textContent="…"}if(statusId)$(statusId).textContent="Sedang memproses…";try{let r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:messages.slice(-24)})}),d=await r.json().catch(()=>({error:"Respons server tidak valid."}));if(!r.ok)throw Error(d.error||"Permintaan gagal");if(typeof d.reply!=="string")throw Error("Format jawaban server tidak sesuai");messages.push({role:"assistant",content:d.reply});addBubble(target,d.reply,"assistant",true);saveChat();if(statusId)$(statusId).textContent="Jawaban diterima"}catch(e){addBubble(target,"Gagal: "+e.message,"assistant",true);if(statusId)$(statusId).textContent="Permintaan gagal";if((e.message||"").toLowerCase().includes("credits"))notify("Saldo API habis; periksa billing.")}finally{busy=false;if(buttonId){$(buttonId).disabled=false;$(buttonId).textContent=buttonId==="homeSend"?"➤":"Kirim ↑"}}}
+$("chatForm").onsubmit=e=>{e.preventDefault();let t=$("chatInput").value;$("chatInput").value="";sendMessage(t,"chatLog","chatStatus","sendBtn")};
+$("homeForm").onsubmit=e=>{e.preventDefault();let t=$("homeInput").value;$("homeInput").value="";go("chat");$("chatLog").replaceChildren();messages=[];sendMessage(t,"chatLog","chatStatus","sendBtn")};
+$("homeInput").onkeydown=$("chatInput").onkeydown=e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();e.target.form.requestSubmit()}};
+async function callAI(prompt){let r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:[{role:"user",content:prompt}]})}),d=await r.json().catch(()=>({error:"Respons server tidak valid."}));if(!r.ok)throw Error(d.error||"Generate gagal");if(!d.reply)throw Error("AI tidak mengembalikan hasil");return d.reply}
+function setOut(id,s){$(id).textContent=s;$(id).classList.toggle("empty",!s)}
+async function gen(prompt,out,btn){if(!prompt.trim())return notify("Isi deskripsi terlebih dahulu");let b=$(btn),old=b.textContent;b.disabled=true;b.textContent="Memproses…";try{let s=await callAI(prompt);setOut(out,s);notify("Prompt berhasil dibuat")}catch(e){setOut(out,"Gagal: "+e.message);notify("Generate AI gagal")}finally{b.disabled=false;b.textContent=old}}
+function iprompt(){return `Buat prompt gambar detail, siap dipakai di generator. Tulis prompt akhir saja dalam bahasa Indonesia. Subjek: ${$("isub").value.trim()}. Gaya: ${$("istyle").value.trim()||"photorealistic, natural details"}. Rasio: ${$("iratio").value}. Detail: ${$("idetail").value.trim()||"pencahayaan realistis, komposisi jelas, tekstur natural"}.`}
+function vprompt(){return `Buat prompt video terstruktur dalam bahasa Indonesia, mencakup aksi, kamera, pencahayaan, kontinuitas, dan negative constraints. Adegan: ${$("vscene").value.trim()}. Kamera: ${$("vmotion").value}. Durasi: ${$("vduration").value}. Detail: ${$("vdetail").value.trim()||"gerakan natural, kontinuitas visual konsisten"}. Tulis prompt akhir saja.`}
+$("igen").onclick=()=>gen(iprompt(),"iout","igen");$("vgen").onclick=()=>gen(vprompt(),"vout","vgen");
+$("ilocal").onclick=()=>{if(!$("isub").value.trim())return notify("Isi subjek terlebih dahulu");setOut("iout",`${$("isub").value.trim()}. Style: ${$("istyle").value.trim()||"photorealistic, natural details"}. Aspect ratio: ${$("iratio").value}. Details: ${$("idetail").value.trim()||"realistic lighting, natural textures, coherent composition"}. Negative prompt: blurry, distorted anatomy, extra fingers, plastic skin, CGI, watermark.`);notify("Template lokal dibuat")};
+$("vlocal").onclick=()=>{if(!$("vscene").value.trim())return notify("Isi adegan terlebih dahulu");setOut("vout",`VIDEO PROMPT — ${$("vduration").value}\nScene: ${$("vscene").value.trim()}\nCamera: ${$("vmotion").value}\nDirection: natural motion, consistent subject and wardrobe, realistic lighting, smooth temporal continuity.\nDetails: ${$("vdetail").value.trim()||"subtle natural movement, clear subject action"}.\nNegative constraints: flicker, warping, duplicated limbs, inconsistent faces, unnatural motion.`);notify("Template lokal dibuat")};
+async function copyText(s){try{await navigator.clipboard.writeText(s);notify("Berhasil disalin")}catch(e){let a=document.createElement("textarea");a.value=s;document.body.append(a);a.select();document.execCommand("copy");a.remove();notify("Berhasil disalin")}}
+document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>{let s=$(b.dataset.copy).textContent;if(!s||s.includes("Hasil prompt akan"))return notify("Belum ada hasil");copyText(s)});
+document.querySelectorAll("[data-save]").forEach(b=>b.onclick=()=>{let s=$(b.dataset.save).textContent;if(!s||s.includes("Hasil prompt akan"))return notify("Belum ada hasil");addHistory("Prompt",s,s);notify("Disimpan ke riwayat")});
+function renderHistory(){let el=$("historyList");el.replaceChildren();if(!history.length){let d=document.createElement("div");d.className="empty-state";d.textContent="Belum ada riwayat tersimpan.";el.append(d);return}history.forEach(x=>{let row=document.createElement("div");row.className="history-item";let ico=document.createElement("div");ico.className="history-icon";ico.textContent=x.type==="Chat"?"☏":"✎";let info=document.createElement("div");info.className="history-info";let t=document.createElement("strong");t.textContent=x.title||"Riwayat";let dt=document.createElement("small");dt.textContent=(x.type||"Item")+" · "+new Date(x.date||Date.now()).toLocaleString("id-ID");info.append(t,dt);let view=document.createElement("button");view.className="mini";view.textContent="Lihat";view.onclick=()=>{if(x.type==="Chat"&&x.messages){messages=x.messages.slice();go("chat");$("chatLog").replaceChildren();messages.forEach(m=>addBubble("chatLog",m.content,m.role,m.role==="assistant"))}else{go("image");setOut("iout",x.content||"")}};let cp=document.createElement("button");cp.className="mini";cp.textContent="Salin";cp.onclick=()=>copyText(x.content||"");row.append(ico,info,view,cp);el.append(row)})}
+function renderHomeHistory(){let el=$("homeHistory");if(!el)return;el.replaceChildren();let recent=history.slice(0,5);if(!recent.length){let d=document.createElement("div");d.className="empty-state";d.textContent="Riwayat yang disimpan akan muncul di sini.";el.append(d);return}recent.forEach(x=>{let row=document.createElement("div");row.className="history-item";let ico=document.createElement("div");ico.className="history-icon";ico.textContent=x.type==="Chat"?"☏":"✎";let info=document.createElement("div");info.className="history-info";let t=document.createElement("strong");t.textContent=x.title;let dt=document.createElement("small");dt.textContent=new Date(x.date).toLocaleString("id-ID");info.append(t,dt);row.append(ico,info);el.append(row)})}
+$("clearHistory").onclick=()=>{if(confirm("Hapus semua riwayat lokal?")){history=[];chats=[];save(HK,history);save(CK,chats);renderHistory();renderHomeHistory();notify("Riwayat dihapus")}};
+document.querySelectorAll("[data-template]").forEach(b=>b.onclick=()=>{go("image");$("isub").value=b.dataset.template;notify("Template dimuat ke Prompt Gambar")});
+$("globalSearch").oninput=e=>{let q=e.target.value.toLowerCase();document.querySelectorAll(".tool-card").forEach(c=>{c.style.display=!q||c.innerText.toLowerCase().includes(q)?"":"none"})};
+$("themeInfo").onclick=()=>notify("Tema Premium Dark Glassmorphism aktif");$("notice").onclick=()=>notify("Semua notifikasi akan tampil di sini.");
+$("testHealth").onclick=async()=>{let el=$("healthResult");el.textContent="Mengecek…";try{let r=await fetch("/health"),d=await r.json();el.textContent=r.ok&&d.ok?"Backend online ✓":"Backend merespons dengan error"}catch(e){el.textContent="Tidak dapat terhubung ke /health"}};
+renderHistory();renderHomeHistory();
+})();
+</script>
+</body></html>
