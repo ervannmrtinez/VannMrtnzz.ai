@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09090f">
+  <title>VannMrtnz.AI</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: #09090f; color: #f5f5f5;
+      font-family: Arial, sans-serif; min-height: 100vh;
+      display: flex; flex-direction: column;
+    }
+    header {
+      padding: 18px; border-bottom: 1px solid #292936;
+      color: #a78bfa; font-size: 21px; font-weight: bold;
+    }
+    #chat {
+      flex: 1; padding: 18px; overflow-y: auto;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .msg {
+      padding: 12px 15px; border-radius: 14px;
+      max-width: 88%; white-space: pre-wrap; line-height: 1.5;
+    }
+    .bot { background: #1b1b29; align-self: flex-start; }
+    .user { background: #6d4aff; align-self: flex-end; }
+    form {
+      display: flex; gap: 8px; padding: 12px;
+      border-top: 1px solid #292936;
+    }
+    input {
+      flex: 1; min-width: 0; padding: 14px;
+      border: 1px solid #343447; border-radius: 12px;
+      background: #151520; color: white; font-size: 16px;
+    }
+    button {
+      border: 0; border-radius: 12px; padding: 0 18px;
+      background: #8b5cf6; color: white; font-weight: bold;
+    }
+    button:disabled { opacity: .5; }
+  </style>
+</head>
+<body>
+  <header>✦ VannMrtnz.AI</header>
+  <main id="chat">
+    <div class="msg bot">Halo! Gue VannMrtnz.AI. Ada yang bisa gue bantu?</div>
+  </main>
+  <form id="form">
+    <input id="prompt" placeholder="Tulis pesan lu..." autocomplete="off" required>
+    <button id="send" type="submit">Kirim</button>
+  </form>
+  <script>
+    const API_URL = "https://vannmrtnzzai.vercel.app/chat";
+    const chat = document.getElementById("chat");
+    const form = document.getElementById("form");
+    const input = document.getElementById("prompt");
+    const send = document.getElementById("send");
+    const messages = [];
+
+    function addMessage(text, role) {
+      const el = document.createElement("div");
+      el.className = "msg " + (role === "user" ? "user" : "bot");
+      el.textContent = text;
+      chat.appendChild(el);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+
+      addMessage(text, "user");
+      messages.push({ role: "user", content: text });
+      input.value = "";
+      send.disabled = true;
+      send.textContent = "...";
+
+      try {
+        const response = await fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ messages })
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || "Permintaan gagal.");
+        if (typeof data.reply !== "string") {
+          throw new Error("Format jawaban server tidak sesuai.");
+        }
+        addMessage(data.reply, "assistant");
+        messages.push({ role: "assistant", content: data.reply });
+      } catch (error) {
+        addMessage("Gagal: " + error.message, "assistant");
+      } finally {
+        send.disabled = false;
+        send.textContent = "Kirim";
+        input.focus();
+      }
+    });
+  </script>
+</body>
+</html>
